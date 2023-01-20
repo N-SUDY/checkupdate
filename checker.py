@@ -138,7 +138,7 @@ async def websitechecker(client, user_id, url, new_task):
                                                                 try:
                                                                     Value_Found = str(zz[0].get_text())
                                                                     if Caption_Found:
-                                                                        Caption_Found += Value_Found + "\n\n"
+                                                                        Caption_Found += "\n\n" + Value_Found
                                                                         await save_update(url, Caption_Found)
                                                                     else:
                                                                         Caption_Found = Value_Found
@@ -184,10 +184,10 @@ async def websitechecker(client, user_id, url, new_task):
                                     await record_error(e, url, timex)
                                 text = f"🔵Status: Update Found\n⏳Checked: {str(timex)}\n⚡Ping: {str(comp_time)}\n\n🔶Staus_Code: {str(raw_response.status)}\n🔗Website: {str(url)}\n⏰Notifier Time: {str(GET_TIME())} Secs"
                                 await savewebsite(user_id, url, text)
-                                if url_name!="haryanajobs.in":
-                                    previous_response_html = processed_response_html
-                                else:
+                                if url_name in ["haryanajobs.in", "vacancyjobalert.com"]:
                                     previous_response_html = new_value
+                                else:
+                                    previous_response_html = processed_response_html
                             else:
                                 text = f"🟢Status: Notifier Running\n⏳Checked: {str(timex)}\n⚡Ping: {str(comp_time)}\n\n🔶Staus_Code: {str(raw_response.status)}\n🔗Website: {str(url)}\n⏰Notifier Time: {str(GET_TIME())} Secs"
                                 await savewebsite(user_id, url, text)
